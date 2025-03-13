@@ -1,0 +1,289 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <h1>Ai</h1>
+        <elevenlabs-convai agent-id="7YLpVfVxvSaAIuWvJftC"></elevenlabs-convai>
+    </main>
+    <script src="https://elevenlabs.io/convai-widget/index.js" async type="text/javascript"></script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyWay Travel Bookings</title>
+    <style>
+        :root {
+            --primary-color: #2a7fff;
+            --secondary-color: #f8f9fa;
+            --accent-color: #ff6b6b;
+            --text-color: #333;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #bbdefb);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            width: 100%;
+            max-width: 500px;
+            overflow: hidden;
+        }
+        
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .header h2 {
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+        
+        .form-container {
+            padding: 25px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .input-field:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(42, 127, 255, 0.1);
+        }
+        
+        .input-field::placeholder {
+            color: #999;
+        }
+        
+        .date-inputs {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .date-inputs .form-group {
+            flex: 1;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background: #1a68e5;
+        }
+        
+        .message {
+            margin-top: 15px;
+            text-align: center;
+            font-weight: 500;
+            padding: 10px;
+            border-radius: var(--border-radius);
+        }
+        
+        .success {
+            background-color: #e7f5ea;
+            color: #28a745;
+        }
+        
+        .error {
+            background-color: #ffebee;
+            color: #dc3545;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                max-width: 100%;
+            }
+            
+            .date-inputs {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .input-field {
+                padding: 10px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>SkyWay Travel</h2>
+            <p>Book your next adventure with us</p>
+        </div>
+        
+        <div class="form-container">
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" class="input-field" placeholder="Enter your full name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="input-field" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="departure">Current Location</label>
+                    <input type="text" id="departure" class="input-field" placeholder="Your current city or airport" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="destination">Destination</label>
+                    <input type="text" id="destination" class="input-field" placeholder="Where are you going?" required>
+                </div>
+                
+                <div class="date-inputs">
+                    <div class="form-group">
+                        <label for="departuredate">Departure Date</label>
+                        <input type="date" id="departuredate" class="input-field" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="returndate">Return Date</label>
+                        <input type="date" id="returndate" class="input-field" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="other">Special Requests</label>
+                    <input type="text" id="other" class="input-field" placeholder="Any special requirements?">
+                </div>
+                
+                <button type="button" class="submit-btn" onclick="sendData()">Search Best Deals</button>
+                
+                <div id="responseMessage" class="message" style="display: none;"></div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Set minimum dates for the date pickers
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('departuredate').min = today;
+        document.getElementById('returndate').min = today;
+        
+        // Validate date selection
+        document.getElementById('departuredate').addEventListener('change', function() {
+            const departuredate = this.value;
+            const returndateInput = document.getElementById('returndate');
+            returndateInput.min = departuredate;
+            
+            // If return date is before new departure date, update it
+            if (returndateInput.value && returndateInput.value < departuredate) {
+                returndateInput.value = departuredate;
+            }
+        });
+        
+        async function sendData() {
+            const messageElement = document.getElementById('responseMessage');
+            messageElement.style.display = 'block';
+            
+            let data = {
+                departure: document.getElementById('departure').value,
+                name: document.getElementById('name').value,
+                destination: document.getElementById('destination').value,
+                email: document.getElementById('email').value,
+                other: document.getElementById('other').value,
+                departuredate: document.getElementById('departuredate').value,
+                returndate: document.getElementById('returndate').value
+            };
+            
+            if (!data.departure || !data.name || !data.destination || !data.email || !data.departuredate || !data.returndate) {
+                messageElement.textContent = 'Please fill in all required fields!';
+                messageElement.className = 'message error';
+                return;
+            }
+
+            const webhookUrl = 'https://harshgup16.app.n8n.cloud/webhook-test/fefb7ad7-85ee-4f5f-96a3-f37b9bcf0db9'; // Replace with your actual webhook URL
+
+            try {
+                messageElement.textContent = 'Searching for the best deals...';
+                messageElement.className = 'message';
+                
+                const response = await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                if (response.ok) {
+                    messageElement.textContent = 'Great! We\'re finding the best options for your trip.';
+                    messageElement.className = 'message success';
+                    // Reset form fields
+                    document.getElementById('bookingForm').reset();
+                } else {
+                    throw new Error('Failed to send request');
+                }
+            } catch (error) {
+                messageElement.textContent = 'Sorry, we encountered an error. Please try again later.';
+                messageElement.className = 'message error';
+            }
+        }
+    </script>
+</body>
+</html>
